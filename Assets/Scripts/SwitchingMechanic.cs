@@ -16,7 +16,8 @@ public class SwitchingMechanic : MonoBehaviour
     void Start()
     {
         // Saving all objects in scene onto an array for later use
-        allObjects = FindObjectsOfType<GameObject>();    
+        allObjects = FindObjectsOfType<GameObject>();
+        SwapDimensions();
     }
 
     // Update is called once per frame
@@ -26,21 +27,23 @@ public class SwitchingMechanic : MonoBehaviour
         // On SPACE key press
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            // Switch enabled value to whatever it was not
-            color_enabled = !color_enabled;
-            gray_enabled = !gray_enabled;
-            // Go through each GameObject previously gotten
-            foreach (GameObject obj in allObjects)
+            SwapDimensions();
+        }
+    }
+
+    private void SwapDimensions()
+    {
+        // Go through each GameObject previously gotten
+        foreach (GameObject obj in allObjects)
+        {
+            // Activate or Deactivate based on the new enabled value
+            if (obj.layer == color_layer)
             {
-                // Activate or Deactivate based on the new enabled value
-                if(obj.layer == color_layer)
-                {
-                    obj.SetActive(color_enabled);
-                }
-                else if(obj.layer == gray_layer)
-                {
-                    obj.SetActive(gray_enabled);
-                }
+                obj.SetActive(color_enabled);
+            }
+            else if (obj.layer == gray_layer)
+            {
+                obj.SetActive(gray_enabled);
             }
         }
     }
