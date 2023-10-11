@@ -63,7 +63,7 @@ namespace TarodevController {
         #region Collisions
 
         [Header("COLLISION")] [SerializeField] private Bounds _characterBounds;
-        [SerializeField] private LayerMask _groundLayer;
+        public LayerMask groundLayer;
         [SerializeField] private int _detectorCount = 3;
         [SerializeField] private float _detectionRayLength = 0.1f;
         [SerializeField] [Range(0.1f, 0.3f)] private float _rayBuffer = 0.1f; // Prevents side detectors hitting the ground
@@ -95,7 +95,7 @@ namespace TarodevController {
             _colRight = RunDetection(_raysRight);
 
             bool RunDetection(RayRange range) {
-                return EvaluateRayPositions(range).Any(point => Physics2D.Raycast(point, range.Dir, _detectionRayLength, _groundLayer));
+                return EvaluateRayPositions(range).Any(point => Physics2D.Raycast(point, range.Dir, _detectionRayLength, groundLayer));
             }
         }
 
@@ -266,7 +266,7 @@ namespace TarodevController {
             var furthestPoint = pos + move;
 
             // check furthest movement. If nothing hit, move and don't do extra checks
-            var hit = Physics2D.OverlapBox(furthestPoint, _characterBounds.size, 0, _groundLayer);
+            var hit = Physics2D.OverlapBox(furthestPoint, _characterBounds.size, 0, groundLayer);
             if (!hit) {
                 transform.position += move;
                 return;
@@ -279,7 +279,7 @@ namespace TarodevController {
                 var t = (float)i / _freeColliderIterations;
                 var posToTry = Vector2.Lerp(pos, furthestPoint, t);
 
-                if (Physics2D.OverlapBox(posToTry, _characterBounds.size, 0, _groundLayer)) {
+                if (Physics2D.OverlapBox(posToTry, _characterBounds.size, 0, groundLayer)) {
                     transform.position = positionToMoveTo;
 
                     // We've landed on a corner or hit our head on a ledge. Nudge the player gently
