@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelExit : MonoBehaviour
 {
-    public string levelName = "DoNotTouch";
+    public string levelName = "Tutorial";
 
     void OnTriggerEnter2D(Collider2D col) 
     {
