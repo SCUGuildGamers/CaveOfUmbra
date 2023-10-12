@@ -359,7 +359,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 316931998}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: black_objects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1175,7 +1175,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 994131954}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: red_objects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
