@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e1e54f7715c75e45bd208a6f5915e79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelName: DoNotTouch
+  levelName: Tutorial
 --- !u!61 &5912518631597540194
 BoxCollider2D:
   m_ObjectHideFlags: 0
