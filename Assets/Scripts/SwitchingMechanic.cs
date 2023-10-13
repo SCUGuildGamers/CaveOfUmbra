@@ -12,6 +12,8 @@ public class SwitchingMechanic : MonoBehaviour
     public bool gray_enabled = false;
     [SerializeField] private LayerMask colorLayer;
     [SerializeField] private LayerMask grayLayer;
+    [SerializeField] private Material defaultMaterial;
+    [SerializeField] private Material transparentMaterial;
     public PlayerController pc = null;
     private GameObject[] allObjects;
 
@@ -48,11 +50,11 @@ public class SwitchingMechanic : MonoBehaviour
             // Activate or Deactivate based on the new enabled value
             if (Mathf.Pow(2, obj.layer) == colorLayer.value)
             {
-                obj.SetActive(color_enabled);
+                SwapMaterial(obj, color_enabled);
             }
             else if (Mathf.Pow(2, obj.layer) == grayLayer.value)
             {
-                obj.SetActive(gray_enabled);
+                SwapMaterial(obj, gray_enabled);
             }
         }
 
@@ -64,5 +66,10 @@ public class SwitchingMechanic : MonoBehaviour
             pc.groundLayer |= (1 << (int)Mathf.Log(grayLayer.value, 2));
         else
             pc.groundLayer &= ~(1 << (int)Mathf.Log(grayLayer.value, 2));
+    }
+
+    private void SwapMaterial(GameObject obj, bool enabled)
+    {
+        obj.GetComponent<Renderer>().material = enabled ? defaultMaterial : transparentMaterial;
     }
 }
