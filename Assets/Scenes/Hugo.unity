@@ -400,8 +400,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color_enabled: 1
   gray_enabled: 0
-  color_layer: 6
-  gray_layer: 7
+  colorLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  grayLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  pc: {fileID: 0}
 --- !u!4 &1837549497
 Transform:
   m_ObjectHideFlags: 0
