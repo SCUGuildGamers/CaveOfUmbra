@@ -14,6 +14,8 @@ public class MovingPlatform : MonoBehaviour
     private int cursor = 0;
     private Vector3 startPoint;
     private Vector3 endPoint;
+    private Vector3 _offset, _previousPosition;
+    public GameObject target;
 
     // Update is called once per frame
     void Update()
@@ -70,7 +72,11 @@ public class MovingPlatform : MonoBehaviour
         float timeElapsed = 0;
         while (timeElapsed < lerpDuration)
         {
+            _previousPosition = gameObject.transform.position;
             gameObject.transform.position = Vector3.Lerp(startPoint, endPoint, timeElapsed / lerpDuration);
+            _offset = gameObject.transform.position - _previousPosition;
+            if (target != null)
+                target.transform.position += _offset;
             timeElapsed += Time.deltaTime;
             yield return null;
         }
