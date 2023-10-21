@@ -15,7 +15,7 @@ public class MovingPlatform : MonoBehaviour
     private Vector3 startPoint;
     private Vector3 endPoint;
     private Vector3 _offset, _previousPosition;
-    public GameObject target;
+    public TarodevController.PlayerController target;
 
     // Update is called once per frame
     void Update()
@@ -76,7 +76,15 @@ public class MovingPlatform : MonoBehaviour
             gameObject.transform.position = Vector3.Lerp(startPoint, endPoint, timeElapsed / lerpDuration);
             _offset = gameObject.transform.position - _previousPosition;
             if (target != null)
+            {
+                if (target.colLeft)
+                    _offset.x = Mathf.Clamp(_offset.x, 0f, Mathf.Infinity);
+                if (target.colRight)
+                    _offset.x = Mathf.Clamp(_offset.x, Mathf.NegativeInfinity, 0f);
+                if (!target.Grounded)
+                    _offset.y = 0f;
                 target.transform.position += _offset;
+            }
             timeElapsed += Time.deltaTime;
             yield return null;
         }

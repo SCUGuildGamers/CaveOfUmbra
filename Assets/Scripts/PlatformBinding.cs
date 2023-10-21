@@ -8,7 +8,7 @@ public class PlatformBinding : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            GetComponentInParent<MovingPlatform>().target = collision.gameObject;
+            GetComponentInParent<MovingPlatform>().target = collision.gameObject.GetComponent<TarodevController.PlayerController>();
         }
     }
 

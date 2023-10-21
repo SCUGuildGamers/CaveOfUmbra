@@ -57,7 +57,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.95, y: 1}
+  m_Size: {x: 0.99, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &5785287629097025403
 MonoBehaviour:
@@ -84,7 +84,7 @@ GameObject:
   - component: {fileID: 5785287629388088076}
   - component: {fileID: 5785287629388088065}
   m_Layer: 7
-  m_Name: movingplatformExample
+  m_Name: HMovingPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

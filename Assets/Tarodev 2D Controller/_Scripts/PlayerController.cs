@@ -69,7 +69,10 @@ namespace TarodevController {
         [SerializeField] [Range(0.1f, 0.3f)] private float _rayBuffer = 0.1f; // Prevents side detectors hitting the ground
 
         private RayRange _raysUp, _raysRight, _raysDown, _raysLeft;
-        private bool _colUp, _colRight, _colDown, _colLeft;
+        public bool colUp { get; private set; }
+        public bool colRight { get; private set; }
+        private bool _colDown;
+        public bool colLeft { get; private set; }
 
         private float _timeLeftGrounded;
 
@@ -90,9 +93,9 @@ namespace TarodevController {
             _colDown = groundedCheck;
 
             // The rest
-            _colUp = RunDetection(_raysUp);
-            _colLeft = RunDetection(_raysLeft);
-            _colRight = RunDetection(_raysRight);
+            colUp = RunDetection(_raysUp);
+            colLeft = RunDetection(_raysLeft);
+            colRight = RunDetection(_raysRight);
 
             bool RunDetection(RayRange range) {
                 return EvaluateRayPositions(range).Any(point => Physics2D.Raycast(point, range.Dir, _detectionRayLength, groundLayer));
@@ -168,7 +171,7 @@ namespace TarodevController {
                 _currentHorizontalSpeed = Mathf.MoveTowards(_currentHorizontalSpeed, 0, _deAcceleration * Time.deltaTime);
             }
 
-            if (_currentHorizontalSpeed > 0 && _colRight || _currentHorizontalSpeed < 0 && _colLeft) {
+            if (_currentHorizontalSpeed > 0 && colRight || _currentHorizontalSpeed < 0 && colLeft) {
                 // Don't walk through walls
                 _currentHorizontalSpeed = 0;
             }
@@ -246,7 +249,7 @@ namespace TarodevController {
                 _endedJumpEarly = true;
             }
 
-            if (_colUp) {
+            if (colUp) {
                 if (_currentVerticalSpeed > 0) _currentVerticalSpeed = 0;
             }
         }
