@@ -24,6 +24,7 @@ namespace TarodevController {
 
         // This is horrible, but for some reason colliders are not fully established when update starts...
         private bool _active;
+        public int numJumps;
         void Awake() => Invoke(nameof(Activate), 0.5f);
         void Activate() =>  _active = true;
         
@@ -81,10 +82,14 @@ namespace TarodevController {
             // Ground
             LandingThisFrame = false;
             var groundedCheck = RunDetection(_raysDown);
-            if (_colDown && !groundedCheck) _timeLeftGrounded = Time.time; // Only trigger when first leaving
-            else if (!_colDown && groundedCheck) {
+            if (_colDown && !groundedCheck) { _timeLeftGrounded = Time.time; numJumps = 1; } // Only trigger when first leaving
+            else if (!_colDown && groundedCheck)
+            {
                 _coyoteUsable = true; // Only trigger when first touching
                 LandingThisFrame = true;
+
+                numJumps = 2; 
+                
             }
 
             _colDown = groundedCheck;
@@ -228,13 +233,14 @@ namespace TarodevController {
         }
 
         private void CalculateJump() {
-            // Jump if: grounded or within coyote threshold || sufficient jump buffer
-            if (Input.JumpDown && CanUseCoyote || HasBufferedJump) {
+            // Jump if: grounded or within coyote threshold || sufficient jump buffer || hasn't used double jump 
+            if (Input.JumpDown && CanUseCoyote || HasBufferedJump || Input.JumpDown && numJumps > 0) {
                 _currentVerticalSpeed = _jumpHeight;
                 _endedJumpEarly = false;
                 _coyoteUsable = false;
                 _timeLeftGrounded = float.MinValue;
                 JumpingThisFrame = true;
+                numJumps = numJumps - 1;
             }
             else {
                 JumpingThisFrame = false;
