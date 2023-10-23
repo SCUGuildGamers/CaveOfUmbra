@@ -50,11 +50,11 @@ public class SwitchingMechanic : MonoBehaviour
             // Activate or Deactivate based on the new enabled value
             if (Mathf.Pow(2, obj.layer) == colorLayer.value)
             {
-                SwapMaterial(obj, color_enabled);
+                Swap(obj, color_enabled);
             }
             else if (Mathf.Pow(2, obj.layer) == grayLayer.value)
             {
-                SwapMaterial(obj, gray_enabled);
+                Swap(obj, gray_enabled);
             }
         }
 
@@ -68,8 +68,11 @@ public class SwitchingMechanic : MonoBehaviour
             pc.groundLayer &= ~(1 << (int)Mathf.Log(grayLayer.value, 2));
     }
 
-    private void SwapMaterial(GameObject obj, bool enabled)
+    private void Swap(GameObject obj, bool enabled)
     {
         obj.GetComponent<Renderer>().material = enabled ? defaultMaterial : transparentMaterial;
+        PlatformBinding pb = obj.GetComponentInChildren<PlatformBinding>(true);
+        if (pb != null)
+            pb.gameObject.SetActive(enabled);
     }
 }
