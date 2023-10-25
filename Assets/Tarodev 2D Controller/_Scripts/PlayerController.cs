@@ -24,6 +24,8 @@ namespace TarodevController {
 
         // This is horrible, but for some reason colliders are not fully established when update starts...
         private bool _active;
+        public int initialNumberJumps = 2;
+        [HideInInspector] public int currentNumberJumps;
         void Awake() => Invoke(nameof(Activate), 0.5f);
         void Activate() =>  _active = true;
         
@@ -69,7 +71,10 @@ namespace TarodevController {
         [SerializeField] [Range(0.1f, 0.3f)] private float _rayBuffer = 0.1f; // Prevents side detectors hitting the ground
 
         private RayRange _raysUp, _raysRight, _raysDown, _raysLeft;
-        private bool _colUp, _colRight, _colDown, _colLeft;
+        public bool colUp { get; private set; }
+        public bool colRight { get; private set; }
+        private bool _colDown;
+        public bool colLeft { get; private set; }
 
         private float _timeLeftGrounded;
 
@@ -81,18 +86,22 @@ namespace TarodevController {
             // Ground
             LandingThisFrame = false;
             var groundedCheck = RunDetection(_raysDown);
-            if (_colDown && !groundedCheck) _timeLeftGrounded = Time.time; // Only trigger when first leaving
-            else if (!_colDown && groundedCheck) {
+            if (_colDown && !groundedCheck) { _timeLeftGrounded = Time.time; currentNumberJumps = initialNumberJumps-1; } // Only trigger when first leaving
+            else if (!_colDown && groundedCheck)
+            {
                 _coyoteUsable = true; // Only trigger when first touching
                 LandingThisFrame = true;
+
+                currentNumberJumps = initialNumberJumps; 
+                
             }
 
             _colDown = groundedCheck;
 
             // The rest
-            _colUp = RunDetection(_raysUp);
-            _colLeft = RunDetection(_raysLeft);
-            _colRight = RunDetection(_raysRight);
+            colUp = RunDetection(_raysUp);
+            colLeft = RunDetection(_raysLeft);
+            colRight = RunDetection(_raysRight);
 
             bool RunDetection(RayRange range) {
                 return EvaluateRayPositions(range).Any(point => Physics2D.Raycast(point, range.Dir, _detectionRayLength, groundLayer));
@@ -168,7 +177,7 @@ namespace TarodevController {
                 _currentHorizontalSpeed = Mathf.MoveTowards(_currentHorizontalSpeed, 0, _deAcceleration * Time.deltaTime);
             }
 
-            if (_currentHorizontalSpeed > 0 && _colRight || _currentHorizontalSpeed < 0 && _colLeft) {
+            if (_currentHorizontalSpeed > 0 && colRight || _currentHorizontalSpeed < 0 && colLeft) {
                 // Don't walk through walls
                 _currentHorizontalSpeed = 0;
             }
@@ -228,13 +237,14 @@ namespace TarodevController {
         }
 
         private void CalculateJump() {
-            // Jump if: grounded or within coyote threshold || sufficient jump buffer
-            if (Input.JumpDown && CanUseCoyote || HasBufferedJump) {
+            // Jump if: grounded or within coyote threshold || sufficient jump buffer || hasn't used double jump 
+            if (Input.JumpDown && CanUseCoyote || HasBufferedJump || Input.JumpDown && currentNumberJumps > 0) {
                 _currentVerticalSpeed = _jumpHeight;
                 _endedJumpEarly = false;
                 _coyoteUsable = false;
                 _timeLeftGrounded = float.MinValue;
                 JumpingThisFrame = true;
+                currentNumberJumps = currentNumberJumps - 1;
             }
             else {
                 JumpingThisFrame = false;
@@ -246,7 +256,7 @@ namespace TarodevController {
                 _endedJumpEarly = true;
             }
 
-            if (_colUp) {
+            if (colUp) {
                 if (_currentVerticalSpeed > 0) _currentVerticalSpeed = 0;
             }
         }
