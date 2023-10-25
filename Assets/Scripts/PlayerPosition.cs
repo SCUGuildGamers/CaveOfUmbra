@@ -22,4 +22,12 @@ public class PlayerPosition : MonoBehaviour
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Hazard"))
+        {
+            transform.position = initialPosition;
+        }
+    }
 }

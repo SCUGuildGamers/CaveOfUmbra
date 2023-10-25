@@ -6,6 +6,7 @@ TagManager:
   tags:
   - MovingPlatform
   - Hazard
+  - NotHazard
   layers:
   - Default
   - TransparentFX

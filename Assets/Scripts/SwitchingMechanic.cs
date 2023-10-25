@@ -70,7 +70,16 @@ public class SwitchingMechanic : MonoBehaviour
 
     private void Swap(GameObject obj, bool enabled)
     {
+        //Swaps material
         obj.GetComponent<Renderer>().material = enabled ? defaultMaterial : transparentMaterial;
+
+        //Prevents hazards from killing player when not in same dimension
+        if (obj.tag == "Hazard")
+            obj.tag = "NotHazard";
+        else if (obj.tag == "NotHazard")
+            obj.tag = "Hazard";
+
+        //Stops moving platforms from moving player when not in same dimension
         PlatformBinding pb = obj.GetComponentInChildren<PlatformBinding>(true);
         if (pb != null)
             pb.gameObject.SetActive(enabled);
