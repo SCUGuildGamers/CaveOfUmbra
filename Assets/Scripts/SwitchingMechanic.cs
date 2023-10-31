@@ -16,6 +16,7 @@ public class SwitchingMechanic : MonoBehaviour
     [SerializeField] private Material transparentMaterial;
     public PlayerController pc = null;
     private GameObject[] allObjects;
+    private bool _lock = false;
 
     void Start()
     {
@@ -27,9 +28,14 @@ public class SwitchingMechanic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // makes sure swap doesn't happen multiple times per jump
+        // learned this in Operating Systems!
+        if (!pc.JumpingThisFrame)
+            _lock = false;
         // When player jumps
-        if(pc.JumpingThisFrame)
+        if(!_lock && pc.JumpingThisFrame)
         {
+            _lock = true;
             SwapColorValues();
             SwapDimensions();
         }
@@ -78,6 +84,10 @@ public class SwitchingMechanic : MonoBehaviour
             obj.tag = "NotHazard";
         else if (obj.tag == "NotHazard")
             obj.tag = "Hazard";
+
+        Transform innerCollider = obj.transform.Find("InnerBoxCollider");
+        if (innerCollider != null)
+            innerCollider.gameObject.SetActive(enabled);
 
         //Stops moving platforms from moving player when not in same dimension
         PlatformBinding pb = obj.GetComponentInChildren<PlatformBinding>(true);

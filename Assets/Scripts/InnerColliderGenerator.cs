@@ -11,7 +11,7 @@ public class InnerColliderGenerator : MonoBehaviour
     public float InnerColliderDifference = 0.5f;
     public string ColorLayerName = "ColorDim";
     public string GrayLayerName = "GrayDim";
-    public string InnerCollisionTag = "InstantDeath";
+    public string InnerCollisionTag = "Hazard";
 
     // Start is called before the first frame update
     void Start()
