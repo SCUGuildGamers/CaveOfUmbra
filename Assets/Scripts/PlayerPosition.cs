@@ -28,6 +28,9 @@ public class PlayerPosition : MonoBehaviour
         if (other.CompareTag("Hazard"))
         {
             transform.position = initialPosition;
+
+            string currentscene = SceneManager.GetActiveScene().name;
+            SceneManager.LoadScene(currentscene);
         }
     }
 }
