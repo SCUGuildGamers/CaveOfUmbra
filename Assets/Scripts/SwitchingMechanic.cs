@@ -29,7 +29,7 @@ public class SwitchingMechanic : MonoBehaviour
     void Update()
     {
         // makes sure swap doesn't happen multiple times per jump
-        // learned this in Operating Systems!
+        // learned this in Operating Systems! -> *Note from Hugo: nani?!
         if (!pc.JumpingThisFrame)
             _lock = false;
         // When player jumps
