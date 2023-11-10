@@ -22,13 +22,17 @@ public class CrumblingPlatform : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        bool colliderDown = pc.GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+        if(onGround)
+        {
+        Debug.Log("Damn");
+        }
     }
 
     private void OnTriggerEnter(Collider otherCollider)
