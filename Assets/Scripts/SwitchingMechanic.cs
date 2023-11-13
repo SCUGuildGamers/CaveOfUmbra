@@ -64,8 +64,10 @@ public class SwitchingMechanic : MonoBehaviour
             }
         }
 
+        // Adds the color layer to the player's list of collidable layers
         if (color_enabled)
             pc.groundLayer |= (1 << (int)Mathf.Log(colorLayer.value, 2));
+        // Removes the color layer from the player's list of collidable layers
         else
             pc.groundLayer &= ~(1 << (int)Mathf.Log(colorLayer.value, 2));
         if (gray_enabled) 
@@ -85,6 +87,7 @@ public class SwitchingMechanic : MonoBehaviour
         else if (obj.tag == "NotHazard")
             obj.tag = "Hazard";
 
+        //Removes the inner kill collider from objects when not in same dimension as player
         Transform innerCollider = obj.transform.Find("InnerBoxCollider");
         if (innerCollider != null)
             innerCollider.gameObject.SetActive(enabled);
