@@ -17,11 +17,23 @@ public class SwitchingMechanic : MonoBehaviour
     public PlayerController pc = null;
     private GameObject[] allObjects;
     private bool _lock = false;
+    private bool saved_color_enabled, saved_gray_enabled;
+    
 
     void Start()
     {
         // Saving all objects in scene onto an array for later use
         allObjects = FindObjectsOfType<GameObject>();
+        SwapDimensions();
+
+        saved_color_enabled = color_enabled;
+        saved_gray_enabled = gray_enabled;
+    }
+    public void ResetObjectValues()
+    {
+        color_enabled = saved_color_enabled;
+        gray_enabled = saved_gray_enabled;
+
         SwapDimensions();
     }
 

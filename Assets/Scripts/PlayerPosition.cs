@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class PlayerPosition : MonoBehaviour
 {
     public Vector3 initialPosition;
+    public SwitchingMechanic Switcher;
 
     private void Start()
     {
@@ -23,14 +24,13 @@ public class PlayerPosition : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Hazard"))
         {
             transform.position = initialPosition;
+            Switcher.ResetObjectValues();
 
-            string currentscene = SceneManager.GetActiveScene().name;
-            SceneManager.LoadScene(currentscene);
         }
     }
 }
