@@ -16,7 +16,18 @@ public class CrumblingPlatform : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        BoxCollider2D ObjectCollider = gameObject.GetComponent<BoxCollider2D>();
 
+        Vector3 ColliderSize = ObjectCollider.bounds.size;
+
+        GameObject CrumbleObject = new GameObject("CrumblingBounds");
+
+        CrumbleObject.transform.parent = gameObject.transform;
+        CrumbleObject.transform.localPosition = Vector3.zero;
+
+        BoxCollider2D CrumbleCollider = CrumbleObject.AddComponent<BoxCollider2D>();
+        CrumbleCollider.size = ColliderSize;
+        CrumbleCollider.isTrigger = true; 
     }
 
     // Update is called once per frame
@@ -30,7 +41,7 @@ public class CrumblingPlatform : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            StartCoroutine(Crumble());
+            StartCorouti
         }
     }
 
