@@ -73,7 +73,7 @@ namespace TarodevController {
         private RayRange _raysUp, _raysRight, _raysDown, _raysLeft;
         public bool colUp { get; private set; }
         public bool colRight { get; private set; }
-        private bool _colDown;
+        [HideInInspector] public bool _colDown;
         public bool colLeft { get; private set; }
 
         private float _timeLeftGrounded;
