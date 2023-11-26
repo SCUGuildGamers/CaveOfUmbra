@@ -16,7 +16,7 @@ public class FallthroughMechanic : MonoBehaviour
         
     }
 
-    OnCollisionEnter(Collider other)
+    void OnCollisionEnter(Collision other)
     {
         
     }

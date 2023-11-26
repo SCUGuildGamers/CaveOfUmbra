@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TarodevController;
 
-public class FallthroughPlatform : MonoBehaviour
+public class FallthroughPlatformGenerator : MonoBehaviour
 {
     public PlayerController pc = null;
     public float phaseThroughTime = 1f;
@@ -38,7 +38,7 @@ public class FallthroughPlatform : MonoBehaviour
         // need to check if grounded through player movement
         if(Input.GetKeyDown(KeyCode.S) && pc._colDown == true)
         {
-            
+            StartCoroutine(DisableCollision());
         }
     }
 
@@ -57,8 +57,9 @@ public class FallthroughPlatform : MonoBehaviour
 
 }
 
-public class FallthroughChild : MonoBehaviour
+/*public class FallthroughChild : MonoBehaviour
 {
     OnCollisionEnter
 }
 
+*/
