@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using TarodevController;
 
-public class FallthroughPlatform : MonoBehaviour
+public class FallthroughPlatformGenerator : MonoBehaviour
 {
     public PlayerController pc = null;
     public float phaseThroughTime = 1f;
+    public GameObject otherChild;
 
     // Start is called before the first frame update
     void Start()
@@ -29,36 +30,19 @@ public class FallthroughPlatform : MonoBehaviour
         FallCollider.size = ColliderSize;
         FallCollider.isTrigger = true; 
 
+        // Add the actual mechanic script to the new Object
         FallObject.AddComponent<FallthroughMechanic>();
+
+        // Save the InnerBoxCollider object for future reference in the other script
+        otherChild = gameObject.transform.Find("InnerBoxCollider").gameObject;
         }
 
     // Update is called once per frame
     void Update()
     {
-        // need to check if grounded through player movement
-        if(Input.GetKeyDown(KeyCode.S) && pc._colDown == true)
-        {
-            
-        }
-    }
 
-    private IEnumerator DisableCollision()
-    {
-        BoxCollider2D collider = gameObject.GetComponent<BoxCollider2D>();
-        Transform child = transform.GetChild(0);
-        
-        collider.enabled = false;
-        child.tag = "NotHazard";
-
-        yield return new WaitForSeconds(phaseThroughTime);
-        collider.enabled = true;
-        child.tag = "Hazard";
     }
 
 }
 
-public class FallthroughChild : MonoBehaviour
-{
-    OnCollisionEnter
-}
 
