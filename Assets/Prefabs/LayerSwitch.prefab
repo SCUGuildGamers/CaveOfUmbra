@@ -53,7 +53,7 @@ MonoBehaviour:
   grayLayer:
     serializedVersion: 2
     m_Bits: 128
-  defaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  defaultMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   transparentMaterial: {fileID: 2100000, guid: b3b879141ce3f1047a2c7056b146ec9e, type: 2}
   pc: {fileID: 0}
 --- !u!114 &-3949147166095745447
