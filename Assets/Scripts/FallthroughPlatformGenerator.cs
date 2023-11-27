@@ -44,6 +44,3 @@ public class FallthroughPlatformGenerator : MonoBehaviour
     }
 
 }
-
-
-*/
