@@ -47,17 +47,17 @@ public class SwapMovingPlatform : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("is this going off");
+            //Debug.Log("is this going off");
             _lock = true;
             if (!MovingEquals)
             {
-                Debug.Log("stop the platform");
+                //Debug.Log("stop the platform");
                 FlipActive();
                 MovingEquals = true;
             }
             else
             {
-                Debug.Log("move the platform");
+                //Debug.Log("move the platform");
                 MovingEquals = false;
                 FlipToRightDirection();
             }
@@ -142,12 +142,12 @@ public class SwapMovingPlatform : MonoBehaviour
 
     IEnumerator stopCouroutine()
     {
-        Debug.Log("stopping the coroutines");
+        //Debug.Log("stopping the coroutines");
         yield return new WaitForSeconds(5f);
         tempPosition = transform.position;
         tempyPosition = endPoint;
         StopCoroutine(stopLerp);
-        Debug.Log("starting the moving platform again in 5 seconds");
+        //Debug.Log("starting the moving platform again in 5 seconds");
         yield return new WaitForSeconds(5f);
 
         //CalculatePoints();
