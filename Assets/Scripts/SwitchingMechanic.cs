@@ -99,10 +99,10 @@ public class SwitchingMechanic : MonoBehaviour
         else if (obj.tag == "NotHazard")
             obj.tag = "Hazard";
 
-        //Removes the inner kill collider from objects when not in same dimension as player
-        Transform innerCollider = obj.transform.Find("InnerBoxCollider");
+        // Quick change so that the BoxCollider for the inner hitbox is deatcitvated rather than the entire gameobject
+        GameObject innerCollider = obj.transform.Find("InnerBoxCollider").gameObject;
         if (innerCollider != null)
-            innerCollider.gameObject.SetActive(enabled);
+            innerCollider.GetComponent<BoxCollider2D>().enabled = enabled;
 
         //Stops moving platforms from moving player when not in same dimension
         PlatformBinding pb = obj.GetComponentInChildren<PlatformBinding>(true);
