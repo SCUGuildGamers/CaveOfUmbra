@@ -123,27 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &376008869 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7393333429546651439, guid: 4b46c805b65f5024990d70fb5d79f211, type: 3}
+--- !u!114 &376008874 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7393333429546651432, guid: 4b46c805b65f5024990d70fb5d79f211, type: 3}
   m_PrefabInstance: {fileID: 1222616959}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &376008872
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 376008869}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11c4c7c24b4edf444b4e542de2839cee, type: 3}
+  m_Script: {fileID: 11500000, guid: c4106abac9250534499f14d655b00ab8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InnerColliderDifference: 0.25
-  ColorLayerName: ColorDim
-  GrayLayerName: GrayDim
-  InnerCollisionTag: Hazards
 --- !u!1001 &435612619
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -211,6 +201,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9041825237577848704, guid: 42303504a4fc90a43bc5178df9876bf2, type: 3}
+      propertyPath: Switcher
+      value: 
+      objectReference: {fileID: 376008874}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42303504a4fc90a43bc5178df9876bf2, type: 3}
 --- !u!4 &435612620 stripped
@@ -409,7 +403,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 505939223}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.7644806, y: 0.0000009536743, z: -10}
+  m_LocalPosition: {x: -9.003904, y: 0.0000009536743, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -719,7 +713,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 805480673}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20.080002, y: -8.11, z: -10}
+  m_LocalPosition: {x: -20.08, y: -8.11, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

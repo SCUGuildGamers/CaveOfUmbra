@@ -77,9 +77,9 @@ public class MovingPlatform : MonoBehaviour
             _offset = gameObject.transform.position - _previousPosition;
             if (target != null)
             {
-                if (target.colLeft)
+                if (target.colLeft && !target.colRight)
                     _offset.x = Mathf.Clamp(_offset.x, 0f, Mathf.Infinity);
-                if (target.colRight)
+                if (target.colRight && !target.colLeft)
                     _offset.x = Mathf.Clamp(_offset.x, Mathf.NegativeInfinity, 0f);
                 if (!target.Grounded)
                     _offset.y = 0f;
