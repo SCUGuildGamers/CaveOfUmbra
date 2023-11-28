@@ -50,6 +50,7 @@ public class SwitchingMechanic : MonoBehaviour
             _lock = true;
             SwapColorValues();
             SwapDimensions();
+            Singleton.Instance.AudioManager.Play("jumpswitch");
         }
     }
 

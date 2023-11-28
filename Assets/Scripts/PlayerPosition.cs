@@ -28,9 +28,9 @@ public class PlayerPosition : MonoBehaviour
     {
         if (other.CompareTag("Hazard"))
         {
+            Singleton.Instance.AudioManager.Play("die");
             transform.position = initialPosition;
             Switcher.ResetObjectValues();
-
         }
     }
 }

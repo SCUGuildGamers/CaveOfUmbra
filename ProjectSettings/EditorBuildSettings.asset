@@ -9,6 +9,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/Tutorial.unity
     guid: ead8519e19b82ba4b839dc017f40d04f
   - enabled: 1
+    path: Assets/Scenes/Levels/Hugo1.unity
+    guid: 11a76742154ad384b851c4ebdfdd1983
+  - enabled: 1
+    path: Assets/Scenes/Levels/Hugo2.unity
+    guid: 82181e3922f9b5248b6302865ca8ee6b
+  - enabled: 1
     path: Assets/Scenes/Levels/Ascent.unity
     guid: fa61d0b9c47c67e489fa1cb4ced76fc7
+  - enabled: 1
+    path: Assets/Scenes/Levels/Hugo3.unity
+    guid: 52b1909b83ec7354a90e0246c09f5a1d
   m_configObjects: {}
