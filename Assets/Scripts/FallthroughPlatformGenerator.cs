@@ -36,20 +36,6 @@ public class FallthroughPlatformGenerator : MonoBehaviour
         // Save the InnerBoxCollider object for future reference in the other script
         otherChild = gameObject.transform.Find("InnerBoxCollider").gameObject;
         }
-<<<<<<< HEAD
 }
 
-=======
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-<<<<<<< Updated upstream
-}
-=======
-}
->>>>>>> f031fe7783bdb132a8b6bd31efa299ac656c576d
->>>>>>> Stashed changes
