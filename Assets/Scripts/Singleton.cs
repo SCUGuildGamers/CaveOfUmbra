@@ -14,9 +14,13 @@ public class Singleton : MonoBehaviour
             return;
         }
         Instance = this;
-        AudioManager = GetComponentInChildren<AudioManager>();
-        AudioManager.PlayMusic("music");
 
         DontDestroyOnLoad(this.gameObject);
+    }
+
+    private void Start()
+    {
+        AudioManager = GetComponentInChildren<AudioManager>();
+        AudioManager.PlayMusic("music");
     }
 }
